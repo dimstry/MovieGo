@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, TextInput, FlatList, Image, TouchableOpacity} from 'react-native';
 import {useState} from 'react';
 import {getDatas} from '../../api';
@@ -19,6 +19,10 @@ const Search = ({navigation}: any) => {
       url: `/search/movie?query=${search}`,
     });
   };
+
+  useEffect(() => {
+    setLoading(false);
+  }, [searchResult]);
 
   return (
     <View
