@@ -43,12 +43,7 @@ const Popular = ({navigation}: any) => {
                   source={{
                     uri: `https://image.tmdb.org/t/p/original/${item.poster_path}`,
                   }}
-                  style={{
-                    width: 180,
-                    height: 250,
-                    marginTop: 10,
-                    borderRadius: 10,
-                  }}
+                  style={styles.image}
                   resizeMode="contain"
                 />
               </TouchableOpacity>
@@ -77,6 +72,12 @@ const styles = StyleSheet.create({
   col: {
     flex: 50,
     alignItems: 'center',
+  },
+  image: {
+    width: 180,
+    height: 250,
+    marginTop: 10,
+    borderRadius: 10,
   },
 });
 

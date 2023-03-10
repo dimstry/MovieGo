@@ -4,6 +4,8 @@ import axios from 'axios';
 const client = axios.create({
   baseURL: 'https://api.themoviedb.org/3',
   timeout: 1000,
+  headers: {Accept: 'application/json'},
+  params: {api_key: 'a3757f854014427d94cc506e4b7126ad'},
 });
 
 // get all data from api
@@ -17,10 +19,7 @@ const getDatas = async ({
   url: string;
 }) => {
   try {
-    const res = await client.get(url, {
-      headers: {Accept: 'application/json'},
-      params: {api_key: 'a3757f854014427d94cc506e4b7126ad'},
-    });
+    const res = await client.get(url);
     setData(res.data.results);
   } catch (error) {
     console.log(error);
@@ -40,10 +39,7 @@ const getMovieDetail = async ({
   url: string;
 }) => {
   try {
-    const res = await client.get(url, {
-      headers: {Accept: 'application/json'},
-      params: {api_key: 'a3757f854014427d94cc506e4b7126ad'},
-    });
+    const res = await client.get(url);
     setData(res.data);
   } catch (error) {
     console.log(error);
@@ -65,10 +61,7 @@ const getMovieSearch = async ({
   movieName: string;
 }) => {
   try {
-    const res = await client.get(url + movieName, {
-      headers: {Accept: 'application/json'},
-      params: {api_key: 'a3757f854014427d94cc506e4b7126ad'},
-    });
+    const res = await client.get(url + movieName);
     console.log(res.data.results);
     setData(res.data.results);
   } catch (error) {

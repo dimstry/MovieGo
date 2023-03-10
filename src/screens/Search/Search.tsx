@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useEffect} from 'react';
+import React from 'react';
 import {View, TextInput, FlatList, Image, TouchableOpacity} from 'react-native';
 import {useState} from 'react';
 import {getDatas} from '../../api';
@@ -9,7 +9,7 @@ import {ActivityIndicator} from 'react-native';
 
 const Search = ({navigation}: any) => {
   const [search, setSearch] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [searchResult, setSearchResult] = useState([]);
 
   const handleSearch = () => {
@@ -20,24 +20,10 @@ const Search = ({navigation}: any) => {
     });
   };
 
-  useEffect(() => {
-    setLoading(false);
-  }, [searchResult]);
-
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: '#fff',
-      }}>
+    <View style={styles.container}>
       <TextInput
-        style={{
-          height: 40,
-          margin: 12,
-          borderWidth: 1,
-          borderColor: 'gray',
-          padding: 10,
-        }}
+        style={styles.formInput}
         placeholder="Search"
         onChangeText={text => setSearch(text)}
         defaultValue={search}
@@ -58,12 +44,7 @@ const Search = ({navigation}: any) => {
                 source={{
                   uri: `https://image.tmdb.org/t/p/original/${item.poster_path}`,
                 }}
-                style={{
-                  width: 180,
-                  height: 250,
-                  marginTop: 10,
-                  borderRadius: 10,
-                }}
+                style={styles.image}
                 resizeMode="contain"
               />
             </TouchableOpacity>
@@ -91,6 +72,19 @@ const styles = StyleSheet.create({
   col: {
     width: '50%',
     padding: 5,
+  },
+  formInput: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    borderColor: 'gray',
+    padding: 10,
+  },
+  image: {
+    width: 180,
+    height: 250,
+    marginTop: 10,
+    borderRadius: 10,
   },
 });
 

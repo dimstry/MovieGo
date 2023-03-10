@@ -104,13 +104,7 @@ const MovieDetail = ({
                   source={{
                     uri: `https://image.tmdb.org/t/p/original/${item.poster_path}`,
                   }}
-                  style={{
-                    width: 150,
-                    height: 200,
-                    marginLeft: 10,
-                    marginVertical: 10,
-                    borderRadius: 10,
-                  }}
+                  style={styles.image}
                   resizeMode="contain"
                 />
               </TouchableOpacity>
@@ -146,6 +140,12 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  image: {
+    width: 180,
+    height: 250,
+    marginTop: 10,
+    borderRadius: 10,
   },
 });
 
