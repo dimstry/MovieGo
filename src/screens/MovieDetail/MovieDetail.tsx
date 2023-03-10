@@ -10,13 +10,13 @@ import {
   FlatList,
   TouchableOpacity,
 } from 'react-native';
+import {ActivityIndicator} from 'react-native';
 
 import {getDatas, getMovieDetail} from '../../api';
-
 import {MovieDetailType} from '../../../types/MovieDetailType';
 import {MovieSimilarType} from '../../../types/MovieSimiliarType';
-import {ActivityIndicator} from 'react-native';
 import {MovieType} from '../../../types/MovieType';
+import ImageSliderComp from '../../components/ImageSiderComp';
 
 const MovieDetail = ({
   navigation,
@@ -44,17 +44,18 @@ const MovieDetail = ({
     });
   }, [movieId]);
 
+  const ImagesBanner = {
+    imageUrl: [
+      `https://image.tmdb.org/t/p/original/${dataDetail?.poster_path}`,
+      `https://image.tmdb.org/t/p/original/${dataDetail?.backdrop_path}`,
+    ],
+  };
+
   return (
     <ScrollView>
       {!loadingDetail ? (
         <View>
-          <Image
-            source={{
-              uri: `https://image.tmdb.org/t/p/original/${dataDetail?.poster_path}`,
-            }}
-            resizeMode="stretch"
-            style={{width: '100%', height: 250}}
-          />
+          <ImageSliderComp ImagesBanner={ImagesBanner} />
           <Text style={styles.title}>{dataDetail?.original_title}</Text>
           <View style={styles.row}>
             <View>
@@ -115,6 +116,14 @@ const MovieDetail = ({
           <View>
             <ActivityIndicator size="large" color="#0000ff" style={{flex: 1}} />
           </View>
+        )}
+        {data?.length === 0 && (
+          <Text
+            style={{
+              textAlign: 'center',
+            }}>
+            No data
+          </Text>
         )}
       </View>
     </ScrollView>

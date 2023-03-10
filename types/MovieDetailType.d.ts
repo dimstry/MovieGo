@@ -7,4 +7,5 @@ export type MovieDetailType = {
   vote_average: number;
   runtime: number;
   overview: string;
+  backdrop_path: string;
 };
